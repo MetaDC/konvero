@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from html.themehealer.com/careon/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Jul 2025 10:01:24 GMT -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KONVERO.org | Where Healthcare Professionals Converse</title>
+    <!-- favicons Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/logo/icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/logo/icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/logo/icon.png"
+    />
+    <link rel="manifest" href="assets/images/favicons/site.webmanifest" />
+    <meta name="description" content="Careon HTML 5 Template " />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/custom-animate.css" />
+    <link rel="stylesheet" href="assets/css/swiper.min.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome-all.css" />
+    <link rel="stylesheet" href="assets/css/jarallax.css" />
+    <link rel="stylesheet" href="assets/css/jquery.magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/flaticon.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/odometer.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.css" />
+    <link rel="stylesheet" href="assets/css/aos.css" />
+    <link rel="stylesheet" href="assets/css/timePicker.css" />
+
+    <link rel="stylesheet" href="assets/css/module-css/slider.css" />
+    <link rel="stylesheet" href="assets/css/module-css/banner.css" />
+    <link rel="stylesheet" href="assets/css/module-css/footer.css" />
+    <link rel="stylesheet" href="assets/css/module-css/feature.css" />
+    <link rel="stylesheet" href="assets/css/module-css/about.css" />
+    <link rel="stylesheet" href="assets/css/module-css/brand.css" />
+    <link rel="stylesheet" href="assets/css/module-css/service.css" />
+    <link rel="stylesheet" href="assets/css/module-css/project.css" />
+    <link rel="stylesheet" href="assets/css/module-css/team.css" />
+    <link rel="stylesheet" href="assets/css/module-css/faq.css" />
+    <link rel="stylesheet" href="assets/css/module-css/testimonial.css" />
+    <link rel="stylesheet" href="assets/css/module-css/blog.css" />
+    <link rel="stylesheet" href="assets/css/module-css/contact.css" />
+    <link rel="stylesheet" href="assets/css/module-css/page-header.css" />
+    <link rel="stylesheet" href="assets/css/module-css/appiontment.css" />
+    <link rel="stylesheet" href="assets/css/module-css/error-page.css" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <style>
+      .top-app-bar {
+        background: #0b3f66;
+        color: white;
+        padding: 0.5rem 1rem;
+        margin-bottom: 100px;
+      }
+      .top-app-bar a {
+        color: white;
+        text-decoration: none;
+      }
+      .top-app-bar a {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-SP5GW5F2JC"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-SP5GW5F2JC");
+  </script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGlho2Hz6hTk6QmIvKbZwGubhM8SF9pXI",
+      authDomain: "konvero-eecff.firebaseapp.com",
+      projectId: "konvero-eecff",
+      storageBucket: "konvero-eecff.appspot.com",
+      messagingSenderId: "370349313184",
+      appId: "1:370349313184:web:7817818d56c18ca26f0dc5",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const blogContainer = document.getElementById("blog-container");
+
+    // ✅ Correct usage of getDocs and collection (Modular SDK)
+    const querySnapshot = await getDocs(collection(db, "gallery"));
+
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+
+      const colDiv = document.createElement("div");
+      colDiv.className = "col-xl-4 col-lg-4 col-md-6 wow fadeInLeft";
+      colDiv.setAttribute("data-wow-delay", post.delay || "100ms");
+
+      colDiv.innerHTML = `
+      <div class="blog-one__single">
+        <div class="blog-one__img-box">
+          <div class="blog-one__img">
+            <img src="${post.imageUrl}" alt="${post.alt || ""}" />
+            <div class="blog-one__date-box"></div>
+          </div>
+        </div>
+      </div>
+    `;
+
+      blogContainer.appendChild(colDiv);
+    });
+  </script>
+
+  <body class="custom-cursor">
+    <!-- <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div> -->
+
+    <div class="preloader">
+      <div class="preloader__image"></div>
+    </div>
+
+    <!-- Medical Specialties Modal Popup -->
+    <div
+      class="modal fade"
+      id="medicalSpecialtiesModal"
+      tabindex="-1"
+      aria-labelledby="medicalSpecialtiesLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="medicalSpecialtiesLabel">
+              Medical Specialties
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">General Physicians (MBBS, MD)</li>
+              <li class="list-group-item">Internal Medicine Specialists</li>
+              <li class="list-group-item">Pediatricians</li>
+              <li class="list-group-item">Obstetricians & Gynecologists</li>
+              <li class="list-group-item">Dermatologists</li>
+              <li class="list-group-item">Ophthalmologists</li>
+              <li class="list-group-item">ENT Specialists</li>
+              <li class="list-group-item">Radiologists</li>
+              <li class="list-group-item">Psychiatrists</li>
+              <li class="list-group-item">Pulmonologists</li>
+              <li class="list-group-item">Cardiologists</li>
+              <li class="list-group-item">Gastroenterologists</li>
+              <li class="list-group-item">Endocrinologists</li>
+              <li class="list-group-item">Nephrologists</li>
+              <li class="list-group-item">Oncologists</li>
+              <li class="list-group-item">Rheumatologists</li>
+              <li class="list-group-item">Infectious Disease Specialists</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Medical Specialties Modal Popup -->
+
+    <!-- Surgical Specialties Modal Popup -->
+    <div
+      class="modal fade"
+      id="surgicalSpecialtiesModal"
+      tabindex="-1"
+      aria-labelledby="surgicalSpecialtiesLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="surgicalSpecialtiesLabel">
+              Surgical Specialties
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">General Surgeons</li>
+              <li class="list-group-item">Orthopedic Surgeons</li>
+              <li class="list-group-item">Neurosurgeons</li>
+              <li class="list-group-item">Urologists</li>
+              <li class="list-group-item">Plastic Surgeons</li>
+              <li class="list-group-item">Vascular Surgeons</li>
+              <li class="list-group-item">Cardiothoracic Surgeons</li>
+              <li class="list-group-item">Surgical Oncologists</li>
+              <li class="list-group-item">Laparoscopic Surgeons</li>
+              <li class="list-group-item">Spine Surgeons</li>
+              <li class="list-group-item">ENT Surgeons</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Surgical Specialties Modal Popup -->
+
+    <!-- Super-Specialties & Subspecialties Modal Popup -->
+    <div
+      class="modal fade"
+      id="superSpecialtiesModal"
+      tabindex="-1"
+      aria-labelledby="superSpecialtiesLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="superSpecialtiesLabel">
+              Super-Specialties & Subspecialties
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Interventional Cardiologists</li>
+              <li class="list-group-item">Electrophysiologists</li>
+              <li class="list-group-item">Pediatric Surgeons</li>
+              <li class="list-group-item">Neonatologists</li>
+              <li class="list-group-item">Geriatricians</li>
+              <li class="list-group-item">Pain Physicians</li>
+              <li class="list-group-item">Critical Care Specialists</li>
+              <li class="list-group-item">Sleep Medicine Experts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Super-Specialties & Subspecialties Modal Popup -->
+
+    <!-- Allied Health Professionals Modal Popup -->
+    <div
+      class="modal fade"
+      id="alliedHealthModal"
+      tabindex="-1"
+      aria-labelledby="alliedHealthLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="alliedHealthLabel">
+              Allied Health Professionals
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Physiotherapists</li>
+              <li class="list-group-item">Occupational Therapists</li>
+              <li class="list-group-item">Speech & Language Therapists</li>
+              <li class="list-group-item">Clinical Psychologists</li>
+              <li class="list-group-item">Neuropsychologists</li>
+              <li class="list-group-item">
+                Dietitians & Clinical Nutritionists
+              </li>
+              <li class="list-group-item">Audiologists</li>
+              <li class="list-group-item">Optometrists</li>
+              <li class="list-group-item">Chiropractors</li>
+              <li class="list-group-item">Osteopaths</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Allied Health Professionals Modal Popup -->
+
+    <!-- Diagnostics & Technology Modal Popup -->
+    <div
+      class="modal fade"
+      id="diagnosticsModal"
+      tabindex="-1"
+      aria-labelledby="diagnosticsLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="diagnosticsLabel">
+              Diagnostics & Technology
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Pathologists</li>
+              <li class="list-group-item">Microbiologists</li>
+              <li class="list-group-item">Biochemists</li>
+              <li class="list-group-item">Lab Directors</li>
+              <li class="list-group-item">Radiographers</li>
+              <li class="list-group-item">Sonologists</li>
+              <li class="list-group-item">Diagnostic Center Owners</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Diagnostics & Technology Modal Popup -->
+
+    <!-- Dental Professionals Modal Popup -->
+    <div
+      class="modal fade"
+      id="dentalProfessionalsModal"
+      tabindex="-1"
+      aria-labelledby="dentalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="dentalLabel">Dental Professionals</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">General Dentists</li>
+              <li class="list-group-item">Oral & Maxillofacial Surgeons</li>
+              <li class="list-group-item">Orthodontists</li>
+              <li class="list-group-item">Endodontists</li>
+              <li class="list-group-item">Periodontists</li>
+              <li class="list-group-item">Pedodontists</li>
+              <li class="list-group-item">Prosthodontists</li>
+              <li class="list-group-item">Oral Medicine & Radiology Experts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Dental Professionals Modal Popup -->
+
+    <!-- Healthcare Entrepreneurs Modal Popup -->
+    <div
+      class="modal fade"
+      id="healthcareEntrepreneursModal"
+      tabindex="-1"
+      aria-labelledby="entrepreneursLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="entrepreneursLabel">
+              Healthcare Entrepreneurs
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Owners of Polyclinics, Rehab Centers, Labs
+              </li>
+              <li class="list-group-item">Founders of Healthcare Startups</li>
+              <li class="list-group-item">Medical App & Device Innovators</li>
+              <li class="list-group-item">HealthTech Consultants</li>
+              <li class="list-group-item">Public Health Specialists</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Healthcare Entrepreneurs Modal Popup -->
+
+    <!--  start Biomedical Professionals Modal Popup -->
+    <div
+      class="modal fade"
+      id="biomedicalprofessionals"
+      tabindex="-1"
+      aria-labelledby="biomedicalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="biomedicalLabel">
+              Biomedical Professionals
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Biomedical Engineers</li>
+              <li class="list-group-item">Consultants</li>
+              <li class="list-group-item">Service Providers</li>
+              <!-- <li class="list-group-item">HealthTech Consultants</li>
+              <li class="list-group-item">Public Health Specialists</li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Biomedical ProfessionalsEntrepreneurs Modal Popup -->
+
+    <!-- POPUPS END -->
+    <div class="page-wrapper">
+      <section class="topbar" style="background: #0b3f66">
+        <div class="container">
+          <!-- <div class="row" style="width: 100%">
+            <div
+              class="col-xl-9 col-lg-9 d-none d-md-block"
+              style="display: flex"
+            >
+              <ul
+                class="topbar_link d-flex flex-wrap"
+                style="list-style: none; color: white"
+              >
+                <li>
+                  <a href="callto:123456789"
+                    ><i class="fas fa-phone"></i>+91 70696 30656
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-xl-3 col-lg-3 d-md-none d-lg-block">
+              <ul
+                class="topbar_icon d-flex flex-wrap"
+                style="color: white; list-style: none"
+              >
+                <li
+                  style="
+                    margin-right: 10px;
+                    text-decoration: underline;
+                    font-size: 14px;
+                  "
+                >
+                  Apply for Membership
+                </li>
+
+                <li style="text-decoration: underline; font-size: 14px">
+                  Login
+                </li>
+              </ul>
+            </div>
+          </div> -->
+
+          <div
+            class="top-app-bar text-white px-3 py-2 d-flex justify-content-between align-items-center flex-wrap"
+          >
+            <!-- Desktop Only: Phone on Left -->
+            <div class="d-none d-md-block">
+              <a
+                href="tel:+917069630656"
+                class="text-white text-decoration-none"
+              >
+                <i class="fas fa-phone me-1"></i> +91 70696 30656
+              </a>
+            </div>
+
+            <!-- Desktop: Buttons Right | Mobile: Buttons on both sides -->
+            <div class="d-flex w-100 d-md-none justify-content-center">
+              <a id="membershipBtn" class="">Apply for Membership</a>
+              <!-- <a
+                href="https://konvero.org/software/signin"
+                target="_blank"
+                class=""
+                >Login</a
+              > -->
+            </div>
+
+            <div class="d-none d-md-flex gap-2">
+              <a id="membershipLink" class="">Apply for Membership</a>
+              <!-- <a
+                href="https://konvero.org/software/signin"
+                target="_blank"
+                class=""
+                >Login</a
+              > -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Topbar End -->
+      <!-- Header Start -->
+      <header class="main-header" style="margin-top: 26px">
+        <div class="main-header__wrapper">
+          <nav class="main-menu">
+            <div class="main-menu__wrapper">
+              <div class="container">
+                <div class="main-menu__wrapper-inner">
+                  <div class="main-menu__left">
+                    <div class="main-menu__logo">
+                      <a href="index.html"
+                        ><img
+                          width="170"
+                          src="assets/images/logo/logo-1.png"
+                          alt=""
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="main-menu__main-menu-box">
+                    <a href="#" class="mobile-nav__toggler"
+                      ><i class="fa fa-bars"></i
+                    ></a>
+                    <ul class="main-menu__list">
+                      <li class="">
+                        <a href="index.html">Home </a>
+                        <!-- <ul>
+                          <li><a href="index.html">Home One</a></li>
+                          <li><a href="index2.html">Home Two</a></li>
+                          <li><a href="index3.html">Home Three</a></li>
+                          <li><a href="index4.html">Home Four</a></li>
+                          <li><a href="index5.html">Home Five</a></li>
+                          <li><a href="index-dark.html">Home Dark</a></li>
+                          <li class="dropdown">
+                            <a href="#">One Page Styles</a>
+                            <ul>
+                              <li>
+                                <a href="index-one-page.html"
+                                  >One Page Styles One</a
+                                >
+                              </li>
+                              <li>
+                                <a href="index2-one-page.html"
+                                  >One Page Styles Two</a
+                                >
+                              </li>
+                              <li>
+                                <a href="index3-one-page.html"
+                                  >One Page Styles Three</a
+                                >
+                              </li>
+                              <li>
+                                <a href="index4-one-page.html"
+                                  >One Page Styles Four</a
+                                >
+                              </li>
+                              <li>
+                                <a href="index5-one-page.html"
+                                  >One Page Styles Five</a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                        </ul> -->
+                      </li>
+                      <li>
+                        <a href="index.html#about" class="">About Us</a>
+                      </li>
+                      <li>
+                        <a href="fellowship.html">Fellowship</a>
+                      </li>
+                      <li class="">
+                        <a href="index.html#ownKonvero">Own Konvero</a>
+                        <!-- <ul>
+                          <li><a href="#">Fellowship</a></li>
+                          <li>
+                            <a href="doctor-carousel.html">Own Konvero</a>
+                          </li>
+                          <li>
+                            <a href="doctor-details.html">Gallery</a>
+                          </li>
+                          <li><a href="project.html">Experiences</a></li>
+                          <li>
+                            <a href="project-carousel.html">Meets</a>
+                          </li>
+                          <li>
+                            <a href="project-details.html">Contact</a>
+                          </li>
+                          <li><a href="testimonials.html">Testimonials</a></li>
+                          <li>
+                            <a href="testimonial-carousel.html"
+                              >Testimonial Carousel</a
+                            >
+                          </li>
+                          <li><a href="pricing.html">Gallery</a></li>
+                          <li><a href="appoinment.html">Experiences</a></li>
+                          <li><a href="faq.html">Meets</a></li>
+                          <li><a href="404.html">Contact</a></li>
+                        </ul> -->
+                      </li>
+                      <li class="">
+                        <a href="#">Gallery</a>
+                        <!-- <ul>
+                          <li><a href="services.html">Services</a></li>
+                          <li>
+                            <a href="service-carousel.html">Service Carousel</a>
+                          </li>
+                          <li>
+                            <a href="#"
+                              >Vitality Health Solutions</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#"
+                              >WellSpring Wellness Center</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#"
+                              >Family Health Medical</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#"
+                              >Evergreen Medical Center</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#"
+                              >PureLife Health Services</a
+                            >
+                          </li>
+                        </ul> -->
+                      </li>
+                      <!-- <li class="">
+                        <a href="#gallery">Experiences</a>
+                        <ul>
+                          <li><a href="products.html">Products</a></li>
+                          <li>
+                            <a href="product-details.html">Product Details</a>
+                          </li>
+                          <li><a href="cart.html">Cart</a></li>
+                          <li><a href="checkout.html">Checkout</a></li>
+                          <li><a href="wishlist.html">Wishlist</a></li>
+                          <li><a href="sign-up.html">Sign Up</a></li>
+                          <li><a href="login.html">Login</a></li>
+                        </ul>
+                      </li> -->
+                      <!-- <li class="">
+                        <a href="#gallery">Meets</a>
+                        <ul>
+                          <li><a href="blog.html">Blog</a></li>
+                          <li>
+                            <a href="blog-carousel.html">Blog Carousel</a>
+                          </li>
+                          <li><a href="blog-list.html">Blog List V-01</a></li>
+                          <li><a href="blog-list-2.html">Blog List V-02</a></li>
+                          <li><a href="blog-details.html">Blog Details</a></li>
+                        </ul>
+                      </li> -->
+
+                      <li>
+                        <a href="events.html">Events</a>
+                      </li>
+                      <!-- <li>
+                        <a href="contact.html">Contact</a>
+                      </li> -->
+                    </ul>
+                  </div>
+                  <div class="main-menu__right">
+                    <div class="main-menu__thm-btn">
+                      <a href="#footer" class="thm-btn"
+                        >Contact <span class="icon-plus"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- Header End -->
+
+      <!--Stricky Header-->
+      <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div>
+        <!-- /.sticky-header__content -->
+      </div>
+      <!-- /.stricky-header -->
+
+      <!--Page Header Start-->
+      <section class="page-header">
+        <div
+          class="page-header__bg"
+          style="
+            background-image: url(assets/images/about/page-header-bg-min.png);
+          "
+        ></div>
+        <div class="container">
+          <div class="page-header__inner">
+            <h3>Gallery</h3>
+            <div class="thm-breadcrumb__inner">
+              <ul class="thm-breadcrumb list-unstyled">
+                <li><a href="index.html">Home</a></li>
+                <li><span class="icon-arrow-left"></span></li>
+                <li>Gallery</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Page Header End-->
+
+      <!--Blog Page Start-->
+      <section class="blog-page">
+        <div class="container">
+          <div class="row">
+            <!--blog One Single Start-->
+            <div id="blog-container" class="row"></div>
+            <!--blog One Single End-->
+          </div>
+        </div>
+      </section>
+      <!--Blog Page End-->
+
+      <!--Site Footer Start-->
+      <footer class="site-footer" id="footer">
+        <!-- <div
+          class="site-footer__bg-shape"
+          style="
+            background-image: url(assets/images/shapes/site-footer-bg-shape.png);
+          "
+        ></div> -->
+        <div class="site-footer__newsletter">
+          <div class="container">
+            <div
+              class="site-footer__newsletter-inner"
+              style="background: #ffff"
+            >
+              <div class="site-footer__newsletter-inner-title-box">
+                <!-- <div class="footer-widget__logo">
+                  <a href="index.html"
+                    ><img
+                      width="200px"
+                      src="assets/images/logo/logo-1.png"
+                      alt=""
+                  /></a>
+                </div> -->
+                <h2 class="site-footer__newsletter-title">
+                  Be a Member of <br />KONVERO.org
+                </h2>
+
+                <!-- <form class="site-footer__newsletter-form"> -->
+                <!-- <a href="https://konvero.org/software/signup" target="_blank"> -->
+                <div class="btn-wrapper">
+                  <a id="registerBtn" class="thm-btn">Register Now</a>
+                </div>
+                <!-- <button type="submit" class="thm-btn" id="registerBtn">
+                  Register Now <span class="icon-plus"></span>
+                </button> -->
+                <!-- </a> -->
+                <!-- <a href="https://konvero.org/software/signin" target="_blank">
+                  <button type="submit" class="thm-btn2">
+                    Already a Member?Login
+                  </button></a
+                > -->
+
+                <!-- <div class="site-footer__newsletter-input">
+                    <input type="email" placeholder="Already a Member? Login" />
+                  </div> -->
+                <!-- </form> -->
+              </div>
+              <div class="site-footer__newsletter-form">
+                <ul class="newsletter-pointers">
+                  <li>Attend an upcoming intro meet</li>
+                  <li>Join an existing Circle</li>
+                  <li>Recommend a deserving colleague</li>
+                  <li>Start a KONVERO chapter in your city</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="site-footer__top">
+          <div class="container">
+            <div class="site-footer__top-inner">
+              <div class="row">
+                <div
+                  class="col-xl-3 col-lg-3 col-md-6 col-sm-12wow fadeInUp"
+                  data-wow-delay="100ms"
+                >
+                  <div class="footer-widget__contact-info">
+                    <h4 class="footer-widget__title">Contact</h4>
+                    <ul class="footer-widget__contact-list list-unstyled">
+                      <!-- <li>
+                        <div class="footer-widget__contact-icon">
+                          <span class="icon-pin"></span>
+                        </div>
+                        <div class="footer-widget__contact-content">
+                          <span>Address</span>
+                          <p class="footer-widget__contact-text">
+                            Next to DPS - Kalali, Vadsar Road, Vadodara, Gujarat
+                            - 390012
+                          </p>
+                        </div>
+                      </li> -->
+                      <li>
+                        <div class="footer-widget__contact-icon">
+                          <span class="icon-call"></span>
+                        </div>
+                        <div class="footer-widget__contact-content">
+                          <span>Phone Number</span>
+                          <p class="footer-widget__contact-text">
+                            <a href="tel:+917069630656">+91 70696 30656</a>
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="footer-widget__contact-icon">
+                          <span class="icon-envolope"></span>
+                        </div>
+                        <div class="footer-widget__contact-content">
+                          <span>Email</span>
+                          <p class="footer-widget__contact-text">
+                            <a href="mailto:connect@konveroclub.com"
+                              >connect@konveroclub.com</a
+                            >
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div
+                  class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
+                  data-wow-delay="300ms"
+                >
+                  <div class="footer-widget__social-media">
+                    <div class="footer-widget__title-box">
+                      <h3 class="footer-widget__title">Policy</h3>
+                    </div>
+                    <ul class="footer-widget__services-link-list list-unstyled">
+                      <!-- <li>
+                        <a
+                          href="https://www.instagram.com/konveroclub/"
+                          target="_blank"
+                          >Instagram</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.facebook.com/61577001533215"
+                          target="_blank"
+                          >Facebook</a
+                        >
+                      </li> -->
+                      <li>
+                        <a href="terms-and-conditions.html" target="_blank"
+                          >Terms & Conditions</a
+                        >
+                      </li>
+                      <li>
+                        <a href="privacy-policy.html" target="_blank"
+                          >Privacy Policy</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="cancellation-and-refund-policy.html"
+                          target="_blank"
+                          >Cancellation & Refund Policy</a
+                        >
+                      </li>
+                      <li>
+                        <a href="contact.html" target="_blank">Contact</a>
+                      </li>
+                      <!-- <li>
+                        <a href=""
+                          >Linkedin</a
+                        >
+                      </li>
+                      <li>
+                        <a href="contact.html">Whatsapp</a>
+                      </li> -->
+                      <!-- <li>
+                        <a href="contact.html">Pinterest</a>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
+                  data-wow-delay="400ms"
+                >
+                  <div class="footer-widget__page-link">
+                    <h4 class="footer-widget__title">Page</h4>
+                    <ul class="footer-widget__services-link-list list-unstyled">
+                      <li>
+                        <a href="#about">About Us</a>
+                      </li>
+                      <li>
+                        <a href="fellowship.html">Fellowship </a>
+                      </li>
+                      <li>
+                        <a href="index.html#ownKonvero"> Own Konvero </a>
+                      </li>
+                      <li>
+                        <a href="#">Gallery</a>
+                      </li>
+                      <!-- <li>
+                        <a href="gallery.html">Experiences</a>
+                      </li>
+                      <li>
+                        <a href="gallery.html">Meets</a>
+                      </li> -->
+                      <li>
+                        <a href="events.html">Events</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp"
+                  data-wow-delay="200ms"
+                >
+                  <div class="footer-widget__services">
+                    <h4 class="footer-widget__title">Who Can Join</h4>
+                    <ul class="footer-widget__services-link-list list-unstyled">
+                      <li>
+                        <a
+                          href=""
+                          data-bs-toggle="modal"
+                          data-bs-target="#medicalSpecialtiesModal"
+                          >Medical Specialties</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#surgicalSpecialtiesModal"
+                          >Surgical Specialties</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#superSpecialtiesModal"
+                        >
+                          Super-Specialties & Subspecialties
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#alliedHealthModal"
+                          >Allied Health Professionals</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#diagnosticsModal"
+                          >Diagnostics & Technology</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#dentalProfessionalsModal"
+                          >Dental Professionals
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#healthcareEntrepreneursModal"
+                          >Healthcare Entrepreneurs
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#biomedicalprofessionals"
+                          >Biomedical Professionals
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12">
+                <div
+                  class="site-footer__bottom-inner"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div class="site-footer__copyright">
+                    <p class="site-footer__copyright-text">
+                      © 2025 Konvero.org | Developed by
+                      <a
+                        href="https://diwizon.com/"
+                        target="_blank"
+                        style="text-decoration: underline"
+                        >Diwizon</a
+                      >
+                    </p>
+                  </div>
+                  <!-- <div class="site-footer__bottom-menu-box">
+                    <ul class="list-unstyled site-footer__bottom-menu">
+                      <li><a href="about.html">Trems & Condition</a></li>
+                      <li><a href="about.html">Privacy Policy</a></li>
+                      <li><a href="about.html">Contact Us</a></li>
+                    </ul>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!--Site Footer End-->
+    </div>
+    <!-- /.page-wrapper -->
+
+    <div class="mobile-nav__wrapper">
+      <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+      <!-- /.mobile-nav__overlay -->
+      <div class="mobile-nav__content">
+        <span class="mobile-nav__close mobile-nav__toggler"
+          ><i class="fa fa-times"></i
+        ></span>
+
+        <div class="logo-box">
+          <a href="index.html" aria-label="logo image"
+            ><img src="assets/images/logo/logo-white.png" width="135" alt=""
+          /></a>
+        </div>
+        <!-- /.logo-box -->
+        <div class="mobile-nav__container"></div>
+        <!-- /.mobile-nav__container -->
+
+        <ul class="mobile-nav__contact list-unstyled">
+          <li>
+            <i class="fa fa-envelope"></i>
+            <a href="mailto:connect@konveroclub.com">connect@konveroclub.com</a>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+91 70696 30656">+91 70696 30656</a>
+          </li>
+        </ul>
+        <!-- /.mobile-nav__contact -->
+        <div class="mobile-nav__top">
+          <div class="mobile-nav__social">
+            <!-- <a href="#" class="fab fa-twitter"></a> -->
+            <a
+              href="https://www.facebook.com/61577001533215"
+              target="_blank"
+              class="fab fa-facebook-square"
+            ></a>
+            <!-- <a href="#" class="fab fa-pinterest-p"></a> -->
+            <a
+              href="https://www.instagram.com/konveroclub/"
+              target="_blank"
+              class="fab fa-instagram"
+            ></a>
+          </div>
+          <!-- /.mobile-nav__social -->
+        </div>
+        <!-- /.mobile-nav__top -->
+      </div>
+      <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+      <div class="search-popup__overlay search-toggler"></div>
+      <!-- /.search-popup__overlay -->
+      <div class="search-popup__content">
+        <form action="#">
+          <label for="search" class="sr-only">search here</label
+          ><!-- /.sr-only -->
+          <input type="text" id="search" placeholder="Search Here..." />
+          <button type="submit" aria-label="search submit" class="thm-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+      <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <!-- <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
+      <span class="scroll-to-top__wrapper"
+        ><span class="scroll-to-top__inner"></span
+      ></span>
+      <span class="scroll-to-top__text"> Go Back Top</span>
+    </a> -->
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jarallax.min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/jquery.circle-progress.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/wNumb.min.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/jquery-sidebar-content.js"></script>
+    <script src="assets/js/gsap/gsap.js"></script>
+    <script src="assets/js/gsap/ScrollTrigger.js"></script>
+    <script src="assets/js/gsap/SplitText.js"></script>
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/timePicker.js"></script>
+
+    <!-- template js -->
+    <script src="assets/js/script.js"></script>
+    <script type="text/javascript">
+      (function () {
+        try {
+          var f = document.createElement("iframe");
+
+          var ifrmSrc =
+            "https://forms.konvero.org/konvero1/form/KonveroWebsiteInquiries/formperma/l5MzsG_R4CxN0C1HOzaI8yuBLO3z06dHpyZpEGG_Vd4?zf_rszfm=1&zf_enablecamera=true";
+
+          try {
+            if (
+              typeof ZFAdvLead != "undefined" &&
+              typeof zfutm_zfAdvLead != "undefined"
+            ) {
+              for (
+                var prmIdx = 0;
+                prmIdx < ZFAdvLead.utmPNameArr.length;
+                prmIdx++
+              ) {
+                var utmPm = ZFAdvLead.utmPNameArr[prmIdx];
+                utmPm =
+                  ZFAdvLead.isSameDomian &&
+                  ZFAdvLead.utmcustPNameArr.indexOf(utmPm) == -1
+                    ? "zf_" + utmPm
+                    : utmPm;
+                var utmVal = zfutm_zfAdvLead.zfautm_gC_enc(
+                  ZFAdvLead.utmPNameArr[prmIdx]
+                );
+                if (typeof utmVal !== "undefined") {
+                  if (utmVal != "") {
+                    if (ifrmSrc.indexOf("?") > 0) {
+                      ifrmSrc = ifrmSrc + "&" + utmPm + "=" + utmVal;
+                    } else {
+                      ifrmSrc = ifrmSrc + "?" + utmPm + "=" + utmVal;
+                    }
+                  }
+                }
+              }
+            }
+            if (
+              typeof ZFLead !== "undefined" &&
+              typeof zfutm_zfLead !== "undefined"
+            ) {
+              for (
+                var prmIdx = 0;
+                prmIdx < ZFLead.utmPNameArr.length;
+                prmIdx++
+              ) {
+                var utmPm = ZFLead.utmPNameArr[prmIdx];
+                var utmVal = zfutm_zfLead.zfutm_gC_enc(
+                  ZFLead.utmPNameArr[prmIdx]
+                );
+                if (typeof utmVal !== "undefined") {
+                  if (utmVal != "") {
+                    if (ifrmSrc.indexOf("?") > 0) {
+                      ifrmSrc = ifrmSrc + "&" + utmPm + "=" + utmVal; //No I18N
+                    } else {
+                      ifrmSrc = ifrmSrc + "?" + utmPm + "=" + utmVal; //No I18N
+                    }
+                  }
+                }
+              }
+            }
+          } catch (e) {}
+
+          f.src = ifrmSrc;
+          f.style.border = "none";
+          f.style.height = "150px";
+          f.style.width = "90%";
+          f.style.transition = "all 0.5s ease";
+          f.setAttribute("aria-label", "Konvero Website Inquiries");
+          f.setAttribute("allow", "camera;");
+          var d = document.getElementById(
+            "zf_div_l5MzsG_R4CxN0C1HOzaI8yuBLO3z06dHpyZpEGG_Vd4"
+          );
+          d.appendChild(f);
+          window.addEventListener(
+            "message",
+            function () {
+              var evntData = event.data;
+              if (evntData && evntData.constructor == String) {
+                var zf_ifrm_data = evntData.split("|");
+                if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
+                  var zf_perma = zf_ifrm_data[0];
+                  var zf_ifrm_ht_nw = parseInt(zf_ifrm_data[1], 10) + 15 + "px";
+                  var iframe = document
+                    .getElementById(
+                      "zf_div_l5MzsG_R4CxN0C1HOzaI8yuBLO3z06dHpyZpEGG_Vd4"
+                    )
+                    .getElementsByTagName("iframe")[0];
+                  if (
+                    iframe.src.indexOf("formperma") > 0 &&
+                    iframe.src.indexOf(zf_perma) > 0
+                  ) {
+                    var prevIframeHeight = iframe.style.height;
+                    var zf_tout = false;
+                    if (zf_ifrm_data.length == 3) {
+                      iframe.scrollIntoView();
+                      zf_tout = true;
+                    }
+
+                    if (prevIframeHeight != zf_ifrm_ht_nw) {
+                      if (zf_tout) {
+                        setTimeout(function () {
+                          iframe.style.height = zf_ifrm_ht_nw;
+                        }, 500);
+                      } else {
+                        iframe.style.height = zf_ifrm_ht_nw;
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            false
+          );
+        } catch (e) {}
+      })();
+    </script>
+    <script>
+      const konveroFormURL =
+        "https://forms.konvero.org/konvero1/form/KonveroWebsiteInquiries/formperma/l5MzsG_R4CxN0C1HOzaI8yuBLO3z06dHpyZpEGG_Vd4?zf_rszfm=1&zf_enablecamera=true";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("membershipLink")
+          ?.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.open(konveroFormURL, "_blank");
+          });
+
+        document
+          .getElementById("registerBtn")
+          ?.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.open(konveroFormURL, "_blank");
+          });
+      });
+    </script>
+  </body>
+
+  <!-- Mirrored from html.themehealer.com/careon/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Jul 2025 10:01:24 GMT -->
+</html>
