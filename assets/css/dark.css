@@ -3,9 +3,8 @@ body .site-footer__bottom-inner,
 .site-footer__newsletter-inner,
 .services-one__single,
 .main-menu__wrapper-inner {
-    background-color: #011030;
+  background-color: #011030;
 }
-
 
 .site-footer,
 .contact-one__inner,
@@ -16,26 +15,26 @@ body .site-footer__bottom-inner,
 .brand-one,
 .about-one__working-hour,
 .about-one__content-box {
-    background-color: #04163c;
+  background-color: #04163c;
 }
 
 .stricky-header.main-menu {
-    background-color: #011030;
+  background-color: #011030;
 }
 
 .banner-one {
-    background: transparent;
-    background-color: #04163c;
+  background: transparent;
+  background-color: #04163c;
 }
 
 .banner-one__call-icon {
-    color: var(--careon-white);
-    border: 1px solid rgba(var(--careon-white-rgb), .20);
+  color: var(--careon-white);
+  border: 1px solid rgba(var(--careon-white-rgb), 0.2);
 }
 
 .banner-one__find-doctor {
-    background-color: #011030;
-    border: 1px solid rgba(var(--careon-white-rgb), .20);
+  background-color: #011030;
+  border: 1px solid rgba(var(--careon-white-rgb), 0.2);
 }
 
 .site-footer__bottom-menu li a,
@@ -63,9 +62,8 @@ body .site-footer__bottom-inner,
 .about-one__text,
 .banner-one__text,
 .banner-one__call-sub-title {
-    color: rgba(var(--careon-white-rgb), .50);
+  color: rgba(var(--careon-white-rgb), 0.5);
 }
-
 
 .site-footer__copyright-text a:hover,
 .site-footer__bottom-menu li a:hover,
@@ -98,56 +96,43 @@ body .site-footer__bottom-inner,
 .banner-one__call-number a,
 .banner-one__find-doctor-title,
 .banner-one__find-doctor-name h4 a,
-.main-menu .main-menu__list>li>a,
-.stricky-header .main-menu__list>li>a,
-.main-menu .main-menu__list>li.dropdown>a:after {
-    color: var(--careon-white);
+.main-menu .main-menu__list > li > a,
+.stricky-header .main-menu__list > li > a,
+.main-menu .main-menu__list > li.dropdown > a:after {
+  color: var(--careon-white);
 }
 
-
-.main-menu .main-menu__list>li.current>a::after,
-.main-menu .main-menu__list>li:hover>a::after,
-.stricky-header .main-menu__list>li.current>a::after,
-.stricky-header .main-menu__list>li:hover>a::after {
-    color: var(--careon-base);
+.main-menu .main-menu__list > li.current > a::after,
+.main-menu .main-menu__list > li:hover > a::after,
+.stricky-header .main-menu__list > li.current > a::after,
+.stricky-header .main-menu__list > li:hover > a::after {
+  color: var(--careon-base);
 }
-
 
 .feature-one__feature-list li:hover .feature-one__feature-list-sub-title,
 .feature-one__feature-list li:hover .feature-one__feature-list-icon span,
 .feature-one__feature-list li:hover .feature-one__feature-list-title a {
-    color: var(--careon-black);
+  color: var(--careon-black);
 }
-
-
 
 .blog-one__read-more .thm-btn::before,
 .blog-one__read-more .thm-btn::after {
-    background-color: var(--careon-base);
+  background-color: var(--careon-base);
 }
-
-
 
 .faq-one__left .faq-one-accrodion .accrodion-title h4::before {
-    background-color: var(--careon-black);
+  background-color: var(--careon-black);
 }
-
-
-
-
 
 .site-footer__newsletter-input input[type="email"],
 .team-one__single,
 .feature-one__feature-list li {
-    border: 2px solid rgba(var(--careon-white-rgb), .20);
+  border: 2px solid rgba(var(--careon-white-rgb), 0.2);
 }
-
 
 .team-one__single:hover {
-    border: 2px solid var(--careon-base);
+  border: 2px solid var(--careon-base);
 }
-
-
 
 .site-footer__bottom-inner,
 .footer-widget__contact-icon,
@@ -158,25 +143,19 @@ body .site-footer__bottom-inner,
 .team-one__social a,
 .about-one__working-hour-list li,
 .about-one__working-hour {
-    border: 1px solid rgba(var(--careon-white-rgb), .20);
+  border: 1px solid rgba(var(--careon-white-rgb), 0.2);
 }
-
-
 
 .services-one__btn-box .thm-btn {
-    border: 1px solid var(--careon-base);
+  border: 1px solid var(--careon-base);
 }
 
-
-
-
-
-.brand-one__img>img {
-    filter: contrast(0.5);
+.brand-one__img > img {
+  filter: contrast(0.5);
 }
 
 .site-footer__bg-shape {
-    filter: invert(1);
+  filter: invert(1);
 }
 
 /* The End */

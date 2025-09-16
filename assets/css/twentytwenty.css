@@ -131,8 +131,12 @@
 
 .twentytwenty-container.active .twentytwenty-overlay .twentytwenty-before-label,
 .twentytwenty-container.active .twentytwenty-overlay .twentytwenty-after-label,
-.twentytwenty-container.active :hover.twentytwenty-overlay .twentytwenty-before-label,
-.twentytwenty-container.active :hover.twentytwenty-overlay .twentytwenty-after-label {
+.twentytwenty-container.active
+  :hover.twentytwenty-overlay
+  .twentytwenty-before-label,
+.twentytwenty-container.active
+  :hover.twentytwenty-overlay
+  .twentytwenty-after-label {
   opacity: 0;
 }
 
@@ -173,7 +177,6 @@
 .twentytwenty-vertical .twentytwenty-after-label:before {
   bottom: 10px;
 }
-
 
 .twentytwenty-overlay:hover .twentytwenty-after-label {
   opacity: 0;
