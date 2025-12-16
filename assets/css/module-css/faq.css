@@ -59,7 +59,7 @@
   transition: all 500ms ease;
 }
 
-.faq-one__left .faq-one-accrodion .accrodion + .accrodion {
+.faq-one__left .faq-one-accrodion .accrodion+.accrodion {
   margin-top: 30px;
 }
 
@@ -86,11 +86,7 @@
   text-align: center;
 }
 
-.faq-one__left
-  .faq-one-accrodion
-  .accrodion.active
-  .accrodion-title
-  h4::before {
+.faq-one__left .faq-one-accrodion .accrodion.active .accrodion-title h4::before {
   content: "\e932";
 }
 
@@ -100,6 +96,11 @@
   padding-left: 80px;
   padding-right: 50px;
   margin-top: 1px;
+  display: none;
+}
+
+.faq-one__left .faq-one-accrodion .accrodion.active .accrodion-content {
+  display: block;
 }
 
 .faq-one__left .faq-one-accrodion .accrodion-content p {
@@ -148,11 +149,9 @@
   content: "";
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.3) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.3) 100%);
   transform: skewX(17deg);
   z-index: 1;
 }
@@ -259,7 +258,7 @@
   transition: all 500ms ease;
 }
 
-.faq-two__right .faq-one-accrodion .accrodion + .accrodion {
+.faq-two__right .faq-one-accrodion .accrodion+.accrodion {
   margin-top: 30px;
 }
 
@@ -279,11 +278,7 @@
   text-align: center;
 }
 
-.faq-two__right
-  .faq-one-accrodion
-  .accrodion.active
-  .accrodion-title
-  h4::before {
+.faq-two__right .faq-one-accrodion .accrodion.active .accrodion-title h4::before {
   content: "\e932";
   color: var(--careon-primary);
 }
@@ -294,6 +289,11 @@
   padding-left: 80px;
   padding-right: 20px;
   margin-top: 1px;
+  display: none;
+}
+
+.faq-two__right .faq-one-accrodion .accrodion.active .accrodion-content {
+  display: block;
 }
 
 .faq-two__right .faq-one-accrodion .accrodion-content p {
@@ -381,7 +381,7 @@
   transition: all 500ms ease;
 }
 
-.faq-three__left .faq-one-accrodion .accrodion + .accrodion {
+.faq-three__left .faq-one-accrodion .accrodion+.accrodion {
   margin-top: 20px;
 }
 
@@ -408,11 +408,7 @@
   text-align: center;
 }
 
-.faq-three__left
-  .faq-one-accrodion
-  .accrodion.active
-  .accrodion-title
-  h4::before {
+.faq-three__left .faq-one-accrodion .accrodion.active .accrodion-title h4::before {
   content: "\e932";
   color: var(--careon-white);
   background-color: var(--careon-base);
@@ -424,6 +420,11 @@
   padding-left: 80px;
   padding-right: 20px;
   margin-top: 1px;
+  display: none;
+}
+
+.faq-three__left .faq-one-accrodion .accrodion.active .accrodion-content {
+  display: block;
 }
 
 .faq-three__left .faq-one-accrodion .accrodion-content p {
@@ -496,7 +497,7 @@
   display: block;
 }
 
-.faq-three__contact-info-list li + li {
+.faq-three__contact-info-list li+li {
   margin-top: 27px;
 }
 
