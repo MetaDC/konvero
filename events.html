@@ -637,7 +637,7 @@
                       <a href="index.html"
                         ><img
                           width="170"
-                          src="assets/images/logo/logo-1.webp"
+                          src="assets/images/logo/konvero-new-logo.png"
                           alt=""
                       /></a>
                     </div>
@@ -724,7 +724,7 @@
                         </ul> -->
                       </li>
                       <li class="">
-                        <a href="gallery.html">Gallery</a>
+                        <a href="index.html#gallery">Gallery</a>
                         <!-- <ul>
                           <li><a href="services.html">Services</a></li>
                           <li>
@@ -1029,7 +1029,7 @@
                         <a href="index.html#ownKonvero"> Own Konvero </a>
                       </li>
                       <li>
-                        <a href="gallery.html">Gallery</a>
+                        <a href="index.html#gallery">Gallery</a>
                       </li>
                       <!-- <li>
                         <a href="gallery.html">Experiences</a>
@@ -1394,6 +1394,12 @@
 
         document
           .getElementById("registerBtn")
+          ?.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.open(konveroFormURL, "_blank");
+          });
+        document
+          .getElementById("membershipBtn")
           ?.addEventListener("click", function (e) {
             e.preventDefault();
             window.open(konveroFormURL, "_blank");

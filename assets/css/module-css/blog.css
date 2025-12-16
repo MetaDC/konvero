@@ -25,6 +25,7 @@
   overflow: hidden;
   border-radius: var(--careon-bdr-radius);
   z-index: 1;
+  height: 260px;
 }
 
 .blog-one__img:before {
@@ -82,7 +83,9 @@
 }
 
 .blog-one__img img {
+  height: 100%;
   width: 100%;
+  object-fit: cover;
   border-radius: var(--careon-bdr-radius);
 }
 

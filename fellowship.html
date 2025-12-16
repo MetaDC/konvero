@@ -524,7 +524,7 @@
                       <a href="index.html"
                         ><img
                           width="170"
-                          src="assets/images/logo/logo-1.webp"
+                          src="assets/images/logo/konvero-new-logo.png"
                           alt=""
                       /></a>
                     </div>
@@ -611,7 +611,7 @@
                         </ul> -->
                       </li>
                       <li class="">
-                        <a href="gallery.html">Gallery</a>
+                        <a href="index.html#gallery">Gallery</a>
                         <!-- <ul>
                           <li><a href="services.html">Services</a></li>
                           <li>
@@ -953,12 +953,11 @@
                         <!-- /.inner -->
                       </div>
                     </div>
-                    <div
+                    <!--       <div
                       class="accrodion wow fadeInLeft"
                       data-wow-delay="300ms"
                     >
                       <div class="accrodion-title">
-                        <!-- <div class="faq-one-accrodion__count"></div> -->
                         <h4>Fellowship Fees</h4>
                       </div>
                       <div class="accrodion-content">
@@ -984,9 +983,8 @@
                             </p>
                           </ul>
                         </div>
-                        <!-- /.inner -->
                       </div>
-                    </div>
+                    </div> -->
                     <div
                       class="accrodion wow fadeInRight"
                       data-wow-delay="400ms"
@@ -1819,7 +1817,7 @@
                         <a href="index.html#ownKonvero"> Own Konvero </a>
                       </li>
                       <li>
-                        <a href="gallery.html">Gallery</a>
+                        <a href="index.html#gallery">Gallery</a>
                       </li>
                       <!-- <li>
                         <a href="gallery.html">Experiences</a>
@@ -2221,6 +2219,12 @@
 
         document
           .getElementById("registerBtn")
+          ?.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.open(konveroFormURL, "_blank");
+          });
+        document
+          .getElementById("membershipBtn")
           ?.addEventListener("click", function (e) {
             e.preventDefault();
             window.open(konveroFormURL, "_blank");

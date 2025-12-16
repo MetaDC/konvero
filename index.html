@@ -84,6 +84,151 @@
     />
 
     <style>
+      .card-stack {
+        position: relative;
+        width: 800px;
+        max-width: 100%;
+        margin: 100px auto;
+        animation: fadeUp 1.2s ease-out forwards;
+      }
+
+      /* IMAGE */
+      .card-stack img {
+        width: 100%;
+        border-radius: 24px;
+        position: relative;
+        z-index: 3;
+        display: block;
+      }
+
+      /* COMMON BACKGROUND CARD */
+      .bg-card {
+        position: absolute;
+        inset: -28px;
+        background: #a8eeff;
+        border-radius: 32px;
+        z-index: 1;
+        opacity: 0.9;
+        animation: float 8s ease-in-out infinite;
+        background: linear-gradient(
+          180deg,
+          rgba(148, 223, 242, 0.9),
+          rgba(118, 228, 255, 0.822)
+        );
+
+        backdrop-filter: blur(24px);
+      }
+
+      /* INDIVIDUAL ROTATIONS */
+      .card-1 {
+        transform: rotate(-2deg);
+        opacity: 0.35;
+      }
+
+      .card-2 {
+        transform: rotate(1.5deg);
+        inset: -40px;
+        opacity: 0.25;
+        animation-delay: 1s;
+      }
+
+      .card-3 {
+        transform: rotate(-0.8deg);
+        inset: -52px;
+        opacity: 0.18;
+        animation-delay: 2s;
+      }
+
+      /* ENTRANCE */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* SOFT FLOAT */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(var(--r));
+        }
+        50% {
+          transform: translateY(12px) rotate(var(--r));
+        }
+      }
+
+      .gallery-tab {
+        padding: 4px 21px;
+        background: #f5f5f5;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: capitalize;
+      }
+
+      .gallery-tab:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+      }
+
+      .gallery-tab.active {
+        background: var(--careon-base);
+        color: white;
+        /* box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); */
+      }
+
+      .gallery-category {
+        display: none !important;
+      }
+
+      .gallery-category.active {
+        display: flex !important;
+      }
+
+      /* Mobile swiper should be block display when active */
+      #mobile-gallery-container .gallery-category.active {
+        display: block !important;
+      }
+
+      /* Desktop: Show desktop container, hide mobile container */
+      @media (min-width: 768px) {
+        #desktop-gallery-container {
+          display: block !important;
+        }
+        #mobile-gallery-container {
+          display: none !important;
+        }
+        #mobile-gallery-container .gallery-category {
+          display: none !important;
+        }
+      }
+
+      /* Mobile: Show mobile container, hide desktop container */
+      @media (max-width: 767px) {
+        .gallery-tab {
+          font-size: 14px;
+          padding: 2px 10px;
+        }
+        #desktop-gallery-container {
+          display: none !important;
+        }
+        #desktop-gallery-container .gallery-category {
+          display: none !important;
+        }
+        #mobile-gallery-container {
+          display: block !important;
+        }
+      }
+
       .modal-body {
         max-height: 70vh;
         overflow-y: auto;
@@ -274,8 +419,870 @@
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+  <!-- JavaScript -->
+  <!-- JavaScript -->
+  <script>
+    // ALL GALLERY IMAGES WITH TYPE
+    // Add all your images here with their type property
+    const allGalleryImages = [
+      // Circle 1
+      {
+        imageUrl: "assets/images/gallery/circle1/img1.webp",
+        animation: "fadeInLeft",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img2.webp",
+        animation: "fadeInUp",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img3.webp",
+        animation: "fadeInRight",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img4.webp",
+        animation: "fadeInLeft",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img5.webp",
+        animation: "fadeInUp",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img6.webp",
+        animation: "fadeInRight",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img7.webp",
+        animation: "fadeInLeft",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img8.webp",
+        animation: "fadeInUp",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle1/img9.webp",
+        animation: "fadeInRight",
+        type: "circle1",
+      },
 
-  <script type="module">
+      // Circle 2
+      {
+        imageUrl: "assets/images/gallery/circle2/img1.webp",
+        animation: "fadeInLeft",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img2.webp",
+        animation: "fadeInUp",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img3.webp",
+        animation: "fadeInRight",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img4.webp",
+        animation: "fadeInLeft",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img5.webp",
+        animation: "fadeInUp",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img6.webp",
+        animation: "fadeInRight",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img7.webp",
+        animation: "fadeInLeft",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img8.webp",
+        animation: "fadeInUp",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/circle2/img9.webp",
+        animation: "fadeInRight",
+        type: "circle2",
+      },
+
+      // K2K
+      {
+        imageUrl: "assets/images/gallery/k2k/img1.webp",
+        animation: "fadeInLeft",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img2.webp",
+        animation: "fadeInUp",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img3.webp",
+        animation: "fadeInRight",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img4.webp",
+        animation: "fadeInLeft",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img5.webp",
+        animation: "fadeInUp",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img6.webp",
+        animation: "fadeInRight",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img7.webp",
+        animation: "fadeInLeft",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img8.webp",
+        animation: "fadeInUp",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/k2k/img9.webp",
+        animation: "fadeInRight",
+        type: "k2k",
+      },
+
+      // Workplace Visits
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img1.webp",
+        animation: "fadeInLeft",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img2.webp",
+        animation: "fadeInUp",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img3.webp",
+        animation: "fadeInRight",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img4.webp",
+        animation: "fadeInLeft",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img5.webp",
+        animation: "fadeInUp",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img6.webp",
+        animation: "fadeInRight",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img7.webp",
+        animation: "fadeInLeft",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img8.webp",
+        animation: "fadeInUp",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/workplace_visits/img9.webp",
+        animation: "fadeInRight",
+        type: "workplace",
+      },
+
+      // Special Events
+      {
+        imageUrl: "assets/images/gallery/special_events/img1.webp",
+        animation: "fadeInLeft",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img2.webp",
+        animation: "fadeInUp",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img3.webp",
+        animation: "fadeInRight",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img4.webp",
+        animation: "fadeInLeft",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img5.webp",
+        animation: "fadeInUp",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img6.webp",
+        animation: "fadeInRight",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img7.webp",
+        animation: "fadeInLeft",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img8.webp",
+        animation: "fadeInUp",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/special_events/img9.webp",
+        animation: "fadeInRight",
+        type: "special",
+      },
+
+      // Live Moments
+      {
+        imageUrl: "assets/images/gallery/live_moments/img1.webp",
+        animation: "fadeInLeft",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img2.webp",
+        animation: "fadeInUp",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img3.webp",
+        animation: "fadeInRight",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img4.webp",
+        animation: "fadeInLeft",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img5.webp",
+        animation: "fadeInUp",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img6.webp",
+        animation: "fadeInRight",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img7.webp",
+        animation: "fadeInLeft",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img8.webp",
+        animation: "fadeInUp",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/live_moments/img9.webp",
+        animation: "fadeInRight",
+        type: "live",
+      },
+    ];
+
+    // Filter images by type
+    const galleryData = {
+      "Circle 1": allGalleryImages.filter((img) => img.type === "circle1"),
+      "Circle 2": allGalleryImages.filter((img) => img.type === "circle2"),
+      K2K: allGalleryImages.filter((img) => img.type === "k2k"),
+      "Workplace Visits": allGalleryImages.filter(
+        (img) => img.type === "workplace"
+      ),
+      "Special Events": allGalleryImages.filter(
+        (img) => img.type === "special"
+      ),
+      "Live Moments": allGalleryImages.filter((img) => img.type === "live"),
+    };
+
+    let swiperInstances = {};
+    let currentCategory = "Circle 1";
+
+    // Initialize gallery
+    function initGalleryTabs() {
+      renderTabs();
+      renderAllGalleries();
+      showCategory(currentCategory);
+    }
+
+    // Render tabs
+    function renderTabs() {
+      const tabsContainer = document.getElementById("gallery-tabs");
+      if (!tabsContainer) return;
+
+      tabsContainer.innerHTML = "";
+
+      Object.keys(galleryData).forEach((category) => {
+        const button = document.createElement("button");
+        button.className = `gallery-tab ${
+          category === currentCategory ? "active" : ""
+        }`;
+        button.textContent = category;
+        button.onclick = () => switchCategory(category);
+        tabsContainer.appendChild(button);
+      });
+    }
+
+    // Render all galleries at once (hidden initially)
+    function renderAllGalleries() {
+      const desktopContainer = document.getElementById(
+        "desktop-gallery-container"
+      );
+      const mobileContainer = document.getElementById(
+        "mobile-gallery-container"
+      );
+
+      if (!desktopContainer || !mobileContainer) return;
+
+      desktopContainer.innerHTML = "";
+      mobileContainer.innerHTML = "";
+
+      Object.keys(galleryData).forEach((category) => {
+        const images = galleryData[category] || [];
+        const categoryId = category.toLowerCase().replace(/\s+/g, "-");
+
+        // Desktop Gallery
+        const desktopRow = document.createElement("div");
+        desktopRow.className = `row d-none d-md-flex gallery-category ${
+          category === currentCategory ? "active" : ""
+        }`;
+        desktopRow.id = `desktop-${categoryId}`;
+
+        if (images.length === 0) {
+          desktopRow.innerHTML =
+            '<div class="col-12" style="text-align: center; padding: 60px 20px; color: #666;">No images available in this category.</div>';
+        } else {
+          images.forEach((item, index) => {
+            const delay = `${(index + 1) * 100}ms`;
+            const animation = item.animation || "fadeInUp";
+
+            const desktopCol = document.createElement("div");
+            desktopCol.className = `col-xl-4 col-lg-4 wow ${animation}`;
+            desktopCol.setAttribute("data-wow-delay", delay);
+            desktopCol.innerHTML = `
+            <div class="blog-one__single">
+              <div class="blog-one__img-box">
+                <div class="blog-one__img">
+                  <img src="${item.imageUrl}" alt="${category} Image ${
+              index + 1
+            }" />
+                </div>
+              </div>
+            </div>
+          `;
+            desktopRow.appendChild(desktopCol);
+          });
+        }
+
+        desktopContainer.appendChild(desktopRow);
+
+        // Mobile Gallery (Swiper)
+        const mobileSwiper = document.createElement("div");
+        mobileSwiper.className = `swiper mobile-gallery-swiper d-md-none gallery-category ${
+          category === currentCategory ? "active" : ""
+        }`;
+        mobileSwiper.id = `mobile-${categoryId}`;
+
+        const swiperWrapper = document.createElement("div");
+        swiperWrapper.className = "swiper-wrapper";
+
+        if (images.length > 0) {
+          images.forEach((item, index) => {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide";
+            slide.innerHTML = `
+            <div class="blog-one__single">
+              <div class="blog-one__img-box">
+                <div class="blog-one__img">
+                  <img src="${item.imageUrl}" alt="${category} Image ${
+              index + 1
+            }" />
+                </div>
+              </div>
+            </div>
+          `;
+            swiperWrapper.appendChild(slide);
+          });
+        }
+
+        const swiperPagination = document.createElement("div");
+        swiperPagination.className = "swiper-pagination";
+
+        mobileSwiper.appendChild(swiperWrapper);
+        mobileSwiper.appendChild(swiperPagination);
+        mobileContainer.appendChild(mobileSwiper);
+
+        // Initialize Swiper for this category
+        if (images.length > 0 && typeof Swiper !== "undefined") {
+          setTimeout(() => {
+            swiperInstances[categoryId] = new Swiper(`#mobile-${categoryId}`, {
+              loop: images.length > 1,
+              pagination: {
+                el: `#mobile-${categoryId} .swiper-pagination`,
+                clickable: true,
+              },
+              autoplay:
+                images.length > 1
+                  ? {
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }
+                  : false,
+            });
+          }, 100);
+        }
+      });
+
+      // Reinitialize WOW animations if available
+      if (typeof WOW !== "undefined") {
+        setTimeout(() => {
+          new WOW().init();
+        }, 200);
+      }
+    }
+
+    // Show specific category
+    function showCategory(category) {
+      const categoryId = category.toLowerCase().replace(/\s+/g, "-");
+
+      // First, hide ALL galleries completely
+      const allDesktopGalleries = document.querySelectorAll(
+        "#desktop-gallery-container .gallery-category"
+      );
+      const allMobileGalleries = document.querySelectorAll(
+        "#mobile-gallery-container .gallery-category"
+      );
+
+      allDesktopGalleries.forEach((gallery) => {
+        gallery.classList.remove("active");
+      });
+
+      allMobileGalleries.forEach((gallery) => {
+        gallery.classList.remove("active");
+      });
+
+      // Now show ONLY the selected category galleries
+      const desktopGallery = document.getElementById(`desktop-${categoryId}`);
+      const mobileGallery = document.getElementById(`mobile-${categoryId}`);
+
+      if (desktopGallery) {
+        desktopGallery.classList.add("active");
+      }
+
+      if (mobileGallery) {
+        mobileGallery.classList.add("active");
+      }
+
+      // Update swiper if exists
+      if (swiperInstances[categoryId]) {
+        swiperInstances[categoryId].update();
+        if (swiperInstances[categoryId].autoplay) {
+          swiperInstances[categoryId].autoplay.start();
+        }
+      }
+
+      // Trigger WOW animation for newly shown elements
+      if (typeof WOW !== "undefined") {
+        const wow = new WOW();
+        wow.init();
+      }
+    }
+
+    // Switch category
+    function switchCategory(category) {
+      if (currentCategory === category) return;
+
+      // Stop autoplay on previous category
+      const prevCategoryId = currentCategory.toLowerCase().replace(/\s+/g, "-");
+      if (
+        swiperInstances[prevCategoryId] &&
+        swiperInstances[prevCategoryId].autoplay
+      ) {
+        swiperInstances[prevCategoryId].autoplay.stop();
+      }
+
+      currentCategory = category;
+
+      // Update active tab
+      document.querySelectorAll(".gallery-tab").forEach((tab) => {
+        tab.classList.remove("active");
+        if (tab.textContent === category) {
+          tab.classList.add("active");
+        }
+      });
+
+      // Show new category
+      showCategory(category);
+    }
+
+    // Initialize on load
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initGalleryTabs);
+    } else {
+      initGalleryTabs();
+    }
+  </script>
+  <!--   <script>
+    // ALL GALLERY IMAGES WITH TYPE
+    // Add all your images here with their type property
+    const allGalleryImages = [
+      // Circle 1 images
+      {
+        imageUrl: "assets/images/gallery/g-1-min.webp",
+        animation: "fadeInLeft",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-2-min.webp",
+        animation: "fadeInUp",
+        type: "circle1",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-3-min.webp",
+        animation: "fadeInRight",
+        type: "circle1",
+      },
+
+      // Circle 2 images
+      {
+        imageUrl: "assets/images/gallery/g-4-min.webp",
+        animation: "fadeInLeft",
+        type: "circle2",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-5-min.webp",
+        animation: "fadeInUp",
+        type: "circle2",
+      },
+
+      // K2K images
+      {
+        imageUrl: "assets/images/gallery/g-6-min.webp",
+        animation: "fadeInRight",
+        type: "k2k",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-1-min.webp",
+        animation: "fadeInLeft",
+        type: "k2k",
+      },
+
+      // Workplace Visits images
+      {
+        imageUrl: "assets/images/gallery/g-2-min.webp",
+        animation: "fadeInUp",
+        type: "workplace",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-3-min.webp",
+        animation: "fadeInRight",
+        type: "workplace",
+      },
+
+      // Special Events images
+      {
+        imageUrl: "assets/images/gallery/g-4-min.webp",
+        animation: "fadeInLeft",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-5-min.webp",
+        animation: "fadeInUp",
+        type: "special",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-6-min.webp",
+        animation: "fadeInRight",
+        type: "special",
+      },
+
+      // Live Moments images
+      {
+        imageUrl: "assets/images/gallery/g-1-min.webp",
+        animation: "fadeInLeft",
+        type: "live",
+      },
+      {
+        imageUrl: "assets/images/gallery/g-2-min.webp",
+        animation: "fadeInUp",
+        type: "live",
+      },
+    ];
+
+    // Filter images by type
+    const galleryData = {
+      "Circle 1": allGalleryImages.filter((img) => img.type === "circle1"),
+      "Circle 2": allGalleryImages.filter((img) => img.type === "circle2"),
+      K2K: allGalleryImages.filter((img) => img.type === "k2k"),
+      "Workplace Visits": allGalleryImages.filter(
+        (img) => img.type === "workplace"
+      ),
+      "Special Events": allGalleryImages.filter(
+        (img) => img.type === "special"
+      ),
+      "Live Moments": allGalleryImages.filter((img) => img.type === "live"),
+    };
+
+    let swiperInstances = {};
+    let currentCategory = "Circle 1";
+
+    // Initialize gallery
+    function initGalleryTabs() {
+      renderTabs();
+      renderAllGalleries();
+      showCategory(currentCategory);
+    }
+
+    // Render tabs
+    function renderTabs() {
+      const tabsContainer = document.getElementById("gallery-tabs");
+      if (!tabsContainer) return;
+
+      tabsContainer.innerHTML = "";
+
+      Object.keys(galleryData).forEach((category) => {
+        const button = document.createElement("button");
+        button.className = `gallery-tab ${
+          category === currentCategory ? "active" : ""
+        }`;
+        button.textContent = category;
+        button.onclick = () => switchCategory(category);
+        tabsContainer.appendChild(button);
+      });
+    }
+
+    // Render all galleries at once (hidden initially)
+    function renderAllGalleries() {
+      const desktopContainer = document.getElementById(
+        "desktop-gallery-container"
+      );
+      const mobileContainer = document.getElementById(
+        "mobile-gallery-container"
+      );
+
+      if (!desktopContainer || !mobileContainer) return;
+
+      desktopContainer.innerHTML = "";
+      mobileContainer.innerHTML = "";
+
+      Object.keys(galleryData).forEach((category) => {
+        const images = galleryData[category] || [];
+        const categoryId = category.toLowerCase().replace(/\s+/g, "-");
+
+        // Desktop Gallery
+        const desktopRow = document.createElement("div");
+        desktopRow.className = `row d-none d-md-flex gallery-category ${
+          category === currentCategory ? "active" : ""
+        }`;
+        desktopRow.id = `desktop-${categoryId}`;
+
+        if (images.length === 0) {
+          desktopRow.innerHTML =
+            '<div class="col-12" style="text-align: center; padding: 60px 20px; color: #666;">No images available in this category.</div>';
+        } else {
+          images.forEach((item, index) => {
+            const delay = `${(index + 1) * 100}ms`;
+            const animation = item.animation || "fadeInUp";
+
+            const desktopCol = document.createElement("div");
+            desktopCol.className = `col-xl-4 col-lg-4 wow ${animation}`;
+            desktopCol.setAttribute("data-wow-delay", delay);
+            desktopCol.innerHTML = `
+            <div class="blog-one__single">
+              <div class="blog-one__img-box">
+                <div class="blog-one__img">
+                  <img src="${item.imageUrl}" alt="${category} Image ${
+              index + 1
+            }" />
+                </div>
+              </div>
+            </div>
+          `;
+            desktopRow.appendChild(desktopCol);
+          });
+        }
+
+        desktopContainer.appendChild(desktopRow);
+
+        // Mobile Gallery (Swiper)
+        const mobileSwiper = document.createElement("div");
+        mobileSwiper.className = `swiper mobile-gallery-swiper d-md-none gallery-category ${
+          category === currentCategory ? "active" : ""
+        }`;
+        mobileSwiper.id = `mobile-${categoryId}`;
+
+        const swiperWrapper = document.createElement("div");
+        swiperWrapper.className = "swiper-wrapper";
+
+        if (images.length > 0) {
+          images.forEach((item, index) => {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide";
+            slide.innerHTML = `
+            <div class="blog-one__single">
+              <div class="blog-one__img-box">
+                <div class="blog-one__img">
+                  <img src="${item.imageUrl}" alt="${category} Image ${
+              index + 1
+            }" />
+                </div>
+              </div>
+            </div>
+          `;
+            swiperWrapper.appendChild(slide);
+          });
+        }
+
+        const swiperPagination = document.createElement("div");
+        swiperPagination.className = "swiper-pagination";
+
+        mobileSwiper.appendChild(swiperWrapper);
+        mobileSwiper.appendChild(swiperPagination);
+        mobileContainer.appendChild(mobileSwiper);
+
+        // Initialize Swiper for this category
+        if (images.length > 0 && typeof Swiper !== "undefined") {
+          setTimeout(() => {
+            swiperInstances[categoryId] = new Swiper(`#mobile-${categoryId}`, {
+              loop: images.length > 1,
+              pagination: {
+                el: `#mobile-${categoryId} .swiper-pagination`,
+                clickable: true,
+              },
+              autoplay:
+                images.length > 1
+                  ? {
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }
+                  : false,
+            });
+          }, 100);
+        }
+      });
+
+      // Reinitialize WOW animations if available
+      if (typeof WOW !== "undefined") {
+        setTimeout(() => {
+          new WOW().init();
+        }, 200);
+      }
+    }
+
+    // Show specific category
+    function showCategory(category) {
+      const categoryId = category.toLowerCase().replace(/\s+/g, "-");
+
+      // First, hide ALL galleries completely
+      const allDesktopGalleries = document.querySelectorAll(
+        "#desktop-gallery-container .gallery-category"
+      );
+      const allMobileGalleries = document.querySelectorAll(
+        "#mobile-gallery-container .gallery-category"
+      );
+
+      allDesktopGalleries.forEach((gallery) => {
+        gallery.classList.remove("active");
+        gallery.style.display = "none";
+      });
+
+      allMobileGalleries.forEach((gallery) => {
+        gallery.classList.remove("active");
+        gallery.style.display = "none";
+      });
+
+      // Now show ONLY the selected category galleries
+      const desktopGallery = document.getElementById(`desktop-${categoryId}`);
+      const mobileGallery = document.getElementById(`mobile-${categoryId}`);
+
+      if (desktopGallery) {
+        desktopGallery.classList.add("active");
+        desktopGallery.style.display = "flex";
+      }
+
+      if (mobileGallery) {
+        mobileGallery.classList.add("active");
+        mobileGallery.style.display = "block";
+      }
+
+      // Update swiper if exists
+      if (swiperInstances[categoryId]) {
+        swiperInstances[categoryId].update();
+        if (swiperInstances[categoryId].autoplay) {
+          swiperInstances[categoryId].autoplay.start();
+        }
+      }
+
+      // Trigger WOW animation for newly shown elements
+      if (typeof WOW !== "undefined") {
+        const wow = new WOW();
+        wow.init();
+      }
+    }
+
+    // Switch category
+    function switchCategory(category) {
+      if (currentCategory === category) return;
+
+      // Stop autoplay on previous category
+      const prevCategoryId = currentCategory.toLowerCase().replace(/\s+/g, "-");
+      if (
+        swiperInstances[prevCategoryId] &&
+        swiperInstances[prevCategoryId].autoplay
+      ) {
+        swiperInstances[prevCategoryId].autoplay.stop();
+      }
+
+      currentCategory = category;
+
+      // Update active tab
+      document.querySelectorAll(".gallery-tab").forEach((tab) => {
+        tab.classList.remove("active");
+        if (tab.textContent === category) {
+          tab.classList.add("active");
+        }
+      });
+
+      // Show new category
+      showCategory(category);
+    }
+
+    // Initialize on load
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initGalleryTabs);
+    } else {
+      initGalleryTabs();
+    }
+  </script> -->
+
+  <!--   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
     import {
       getFirestore,
@@ -402,7 +1409,7 @@
     }
     // loadGalleryImages();
     loadDesktopGalleryImages();
-  </script>
+  </script> -->
 
   <body class="custom-cursor">
     <!-- <div class="custom-cursor__cursor"></div>
@@ -945,7 +1952,7 @@
                       <a href="index.html"
                         ><img
                           width="170"
-                          src="assets/images/logo/logo-1.webp"
+                          src="assets/images/logo/konvero-new-logo.png"
                           alt=""
                       /></a>
                     </div>
@@ -1032,7 +2039,7 @@
                         </ul> -->
                       </li>
                       <li class="">
-                        <a href="gallery.html">Gallery</a>
+                        <a href="#gallery">Gallery</a>
                         <!-- <ul>
                           <li><a href="services.html">Services</a></li>
                           <li>
@@ -1157,21 +2164,22 @@
               <div class="banner-one__right">
                 <div class="banner-one__img-box">
                   <div
-                    class="banner-one__img wow slideInRight"
+                    class="banner-one__img wow slideInRight card-stack"
                     data-wow-delay="100ms"
                     data-wow-duration="2000ms"
                   >
-                    <img
-                      src="assets/images/about/hero-image-2-min.webp"
-                      alt=""
-                    />
+                    <div class="bg-card card-1"></div>
+                    <div class="bg-card card-2"></div>
+                    <div class="bg-card card-3"></div>
+
+                    <img src="assets/images/hero/hero-image-1.png" alt="" />
                   </div>
-                  <div class="banner-one__img-shape-1 float-bob-x">
+                  <!-- <div class="banner-one__img-shape-1 float-bob-x">
                     <img
                       src="assets/images/shapes/main-slider-one-img-shape-1.webp"
                       alt=""
                     />
-                  </div>
+                  </div> -->
                   <!-- <div
                     class="banner-one__find-doctor wow slideInLeft"
                     data-wow-delay="100ms"
@@ -1262,7 +2270,10 @@
                   <div class="team-details__right">
                     <h3 class="team-details__name">What is KONVERO?</h3>
                     <p class="team-details__sub-title">
-                      A Fellowship of Healthcare Experts
+                      KONVERO fosters trust and authenticity, ensuring that
+                      every interaction adds value to professional practice. It
+                      empowers members to share knowledge, exchange experiences,
+                      and build lasting collaborations.
                     </p>
                     <ul class="team-details__counter list-unstyled">
                       <!-- <br /><br /> -->
@@ -2321,9 +3332,52 @@
         </div>
       </section>
       <!--Services-2 Page End-->
-
-      <!--Gallery One Start-->
+      <!--Galley-->
       <section class="blog-one" id="gallery">
+        <div class="container">
+          <div
+            class="section-title text-center sec-title-animation animation-style1"
+          >
+            <h3 class="section-title__title title-animation">
+              Inside the<br />
+              Ethical Circle
+            </h3>
+          </div>
+
+          <!-- Gallery Tabs -->
+          <div
+            class="gallery-tabs"
+            id="gallery-tabs"
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 15px;
+              margin-bottom: 50px;
+              padding: 0 15px;
+            "
+          >
+            <!-- Tabs will be generated here -->
+          </div>
+
+          <!-- Desktop Grid Container -->
+          <div id="desktop-gallery-container">
+            <!-- Category rows will be inserted here -->
+          </div>
+
+          <!-- Mobile Swiper Container -->
+          <div id="mobile-gallery-container">
+            <!-- Category swipers will be inserted here -->
+          </div>
+
+          <!-- <div class="btn-wrapper">
+            <a href="gallery.html" class="thm-btn">View All</a>
+          </div> -->
+        </div>
+      </section>
+      <!--Galley-->
+      <!--Gallery One Start-->
+      <section class="blog-one" id="gallery" style="display: none">
         <div class="container">
           <div
             class="section-title text-center sec-title-animation animation-style1"
@@ -2424,9 +3478,9 @@
 
             <div class="swiper-pagination"></div>
           </div>
-          <div class="btn-wrapper">
+          <!-- <div class="btn-wrapper">
             <a href="gallery.html" class="thm-btn">View All</a>
-          </div>
+          </div> -->
         </div>
       </section>
       <!--Gallery One End-->
@@ -2642,7 +3696,10 @@
               <div class="team-one__single">
                 <div class="team-one__img-box">
                   <div class="team-one__img">
-                    <img src="assets/images/doctors/nikunj-min.webp" alt="" />
+                    <img
+                      src="assets/images/doctors/nikunj-profile.webp"
+                      alt=""
+                    />
                   </div>
                 </div>
                 <div class="team-one__content">
@@ -2854,7 +3911,10 @@
                 <div class="team-one__single">
                   <div class="team-one__img-box">
                     <div class="team-one__img">
-                      <img src="assets/images/doctors/nikunj-min.webp" alt="" />
+                      <img
+                        src="assets/images/doctors/nikunj-profile.webp"
+                        alt=""
+                      />
                     </div>
                   </div>
                   <div class="team-one__content">
@@ -4190,7 +5250,7 @@
                         <a href="#ownKonvero"> Own Konvero </a>
                       </li>
                       <li>
-                        <a href="gallery.html">Gallery</a>
+                        <a href="#gallery">Gallery</a>
                       </li>
                       <!-- <li>
                         <a href="gallery.html">Experiences</a>
@@ -4691,6 +5751,12 @@
 
         document
           .getElementById("registerBtn")
+          ?.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.open(konveroFormURL, "_blank");
+          });
+        document
+          .getElementById("membershipBtn")
           ?.addEventListener("click", function (e) {
             e.preventDefault();
             window.open(konveroFormURL, "_blank");
